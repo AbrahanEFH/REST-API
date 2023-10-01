@@ -1,0 +1,19 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "¡Bienvenido a mi proyecto de API REST con Node.js y Express.js! En este repositorio, desarrollaré una API REST utilizando estas tecnologías para crear un servicio web que proporcionará datos y funcionalidades a través de solicitudes HTTP.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
