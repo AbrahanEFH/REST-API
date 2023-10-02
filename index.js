@@ -39,4 +39,7 @@ app.get('/api/notes', (req, res) => {
     res.json(notes)
 })
 
-
+app.get('/api/notes/:id', (req, res) => {
+    const id = req.params
+    res.send(id)
+})
