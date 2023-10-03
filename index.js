@@ -41,5 +41,6 @@ app.get('/api/notes', (req, res) => {
 
 app.get('/api/notes/:id', (req, res) => {
     const id = req.params
+    const note = notes.find(note => nodemon.id === id);
     res.send(id)
 })
