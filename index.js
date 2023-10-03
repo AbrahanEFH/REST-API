@@ -40,7 +40,7 @@ app.get('/api/notes', (req, res) => {
 })
 
 app.get('/api/notes/:id', (req, res) => {
-    const id = req.params
-    const note = notes.find(note => nodemon.id === id);
-    res.send(id)
+    const id = Number(req.params.id)    // Convertimos a numero y pasamos el id al params
+    const note = notes.find(note => note.id === id);
+    res.json(note)
 })
