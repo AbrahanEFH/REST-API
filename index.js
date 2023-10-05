@@ -1,12 +1,6 @@
 const express = require('express');
 const app = express();
 
-const PORT = 3000;
-
-// De esta manera siempre debe iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`server runnig on port ${PORT}`)
-});
 
 
 // Arreglo de objetos para realizar pruebas
@@ -50,3 +44,15 @@ app.get('/api/notes/:id', (req, res) => {
         res.status(404).end();
     }
 })
+
+app.delete('/api/notes/:id', (req, res) => {
+    const id = Number(req.params.id)
+    notes = notes.filter(note => note.id !== id)
+    res.status(204).end()
+})
+
+const PORT = 3000;
+// De esta manera siempre debe iniciar el servidor
+app.listen(PORT, () => {
+    console.log(`server runnig on port ${PORT}`)
+});
