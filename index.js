@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-
+app.use(express.json()) // Este modulo incluido en express contiene la manera de utilizar el body-parser
 
 // Arreglo de objetos para realizar pruebas
 let notes = [
@@ -49,6 +49,25 @@ app.delete('/api/notes/:id', (req, res) => {
     const id = Number(req.params.id)
     notes = notes.filter(note => note.id !== id)
     res.status(204).end()
+})
+
+app.post('/api/notes', (req, res) => {
+    const note = req.body
+    // Recuperamos las ids para poder crear nuevas
+    const ids = notes.map(note => note.id)
+    const maxId = Math.max(...ids)
+    // Creamos el nuevo objeto 
+    const newNote = {
+        id: maxId + 1,
+        content: note.content,
+        important: typeof note.important !== 'undefined' ? note.important : false,
+        date: new Date().toISOString()
+    }
+
+    // agregamos la newNote a la lista de notes
+    notes = [...notes, newNote]
+
+    res.json(newNote)
 })
 
 const PORT = 3000;
