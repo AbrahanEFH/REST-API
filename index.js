@@ -53,6 +53,16 @@ app.delete('/api/notes/:id', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     const note = req.body
+
+    // Validacion funciona con herramienta externa
+    if (!note || !note.content) {
+        return response.status(404).json({
+            error: 'note.content is missing'
+        })
+    }
+
+
+
     // Recuperamos las ids para poder crear nuevas
     const ids = notes.map(note => note.id)
     const maxId = Math.max(...ids)
@@ -67,7 +77,7 @@ app.post('/api/notes', (req, res) => {
     // agregamos la newNote a la lista de notes
     notes = [...notes, newNote]
 
-    res.json(newNote)
+    res.status(201).json(newNote)
 })
 
 const PORT = 3000;
