@@ -1,5 +1,5 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
 app.use(express.json()) // Este modulo incluido en express contiene la manera de utilizar el body-parser
 
@@ -23,7 +23,7 @@ let notes = [
         date: '2019-05-30T19:20:14.298Z',
         important: true
     }
-];
+]
 
 app.get('/', (req, res) => {
     res.send(`<h1><center>Servidor levantado en el puerto ${PORT}</center></h1>`)
@@ -35,13 +35,13 @@ app.get('/api/notes', (req, res) => {
 
 app.get('/api/notes/:id', (req, res) => {
     const id = Number(req.params.id)    // Convertimos a numero y pasamos el id al params
-    const note = notes.find(note => note.id === id);
+    const note = notes.find(note => note.id === id)
 
     if (note) {
         res.json(note)
 
     } else {
-        res.status(404).end();
+        res.status(404).end()
     }
 })
 
@@ -56,7 +56,7 @@ app.post('/api/notes', (req, res) => {
 
     // Validacion funciona con herramienta externa
     if (!note || !note.content) {
-        return response.status(404).json({
+        return res.status(404).json({
             error: 'note.content is missing'
         })
     }
@@ -80,8 +80,8 @@ app.post('/api/notes', (req, res) => {
     res.status(201).json(newNote)
 })
 
-const PORT = 3000;
+const PORT = 3000
 // De esta manera siempre debe iniciar el servidor
 app.listen(PORT, () => {
     console.log(`server runnig on port ${PORT}`)
-});
+})
